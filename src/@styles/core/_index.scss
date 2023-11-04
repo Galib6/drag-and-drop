@@ -1,0 +1,50 @@
+.container {
+  margin: 50px auto;
+  max-width: 1000px;
+  padding: 0px;
+  background-color: white;
+  border-radius: 10px;
+  & > h1 {
+    padding-left: 15px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d7d7d7;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .card_container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    @include lg {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}
+.product_item {
+  position: relative;
+  z-index: 5;
+  .overlay {
+    display: none;
+  }
+  &:hover {
+    .overlay {
+      display: block;
+      z-index: 99;
+      &::before {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        content: '';
+        background-color: #ececec5b;
+      }
+      .checkbox {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    }
+  }
+}

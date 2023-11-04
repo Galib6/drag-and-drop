@@ -2,15 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './core/index';
 @import './utilities/mixins';
+@import './core/index';
 
-.card_container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 25px;
-  @include lg {
-    max-width: 800px;
-    margin: 50px auto;
-  }
+body {
+  background-color: #ececec;
 }
