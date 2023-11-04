@@ -12,14 +12,14 @@ import { products } from '@lib/const/products';
 import ProductContainer from '@modules/products/components/ProductContainer';
 import { useCallback, useState } from 'react';
 
-export interface IPorduct {
+export interface IProduct {
   id: string | number;
   img: string;
 }
 
 const App: React.FC = () => {
   const [items, setItems] = useState(products);
-  const [active, setActive] = useState<IPorduct>(null);
+  const [active, setActive] = useState<IProduct>(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   const handleDragStart = useCallback((event: DragStartEvent) => {

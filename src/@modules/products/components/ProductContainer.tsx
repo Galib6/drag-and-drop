@@ -1,8 +1,8 @@
 import { DragOverlay } from '@dnd-kit/core';
 import { SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
-import { IProduct } from '@lib/redux/state/state.slice';
 import SortableItem from '@modules/products/components/SortableItem';
 import React from 'react';
+import { IProduct } from 'src/pages';
 import Grid from './Grid';
 import Item from './Item';
 

@@ -1,5 +1,5 @@
-import { IProduct } from '@lib/redux/state/state.slice';
 import { HTMLAttributes, forwardRef } from 'react';
+import { IProduct } from 'src/pages';
 
 export type ItemProps = HTMLAttributes<HTMLDivElement> & {
   withOpacity?: boolean;
