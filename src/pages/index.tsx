@@ -1,5 +1,6 @@
 import {
   DndContext,
+  DragOverlay,
   DragStartEvent,
   MouseSensor,
   TouchSensor,
@@ -7,10 +8,11 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import { arrayMove } from '@dnd-kit/sortable';
+import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { products } from '@lib/const/products';
-import ProductContainer from '@modules/products/components/ProductContainer';
-import { useCallback, useState } from 'react';
+import ProductCard from '@modules/products/components/ProductCard';
+import SortableItem from '@modules/products/components/SortableItem';
+import React, { useCallback, useState } from 'react';
 
 export interface IProduct {
   id: string | number;
@@ -54,7 +56,21 @@ const App: React.FC = () => {
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <ProductContainer items={items} active={active} />
+      <SortableContext items={items} strategy={rectSortingStrategy}>
+        <div className="card_container">
+          {items?.map((item, index) => <SortableItem key={item.id} i={index} item={item} />)}
+        </div>
+      </SortableContext>
+      <DragOverlay
+        adjustScale
+        style={{
+          transformOrigin: '0 0 ',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        {active?.id ? <ProductCard item={active} withOpacity /> : null}
+      </DragOverlay>
     </DndContext>
   );
 };

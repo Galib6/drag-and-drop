@@ -9,7 +9,7 @@ export type ItemProps = HTMLAttributes<HTMLDivElement> & {
   active?: IProduct;
 };
 
-const Item = forwardRef<HTMLDivElement, ItemProps>(
+const ProductCard = forwardRef<HTMLDivElement, ItemProps>(
   ({ item, active, withOpacity, isDragging, style, i, ...props }, ref) => {
     const inlineStyles = {
       opacity: isDragging ? '0.2' : '1',
@@ -35,6 +35,6 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
   },
 );
 
-Item.displayName = 'Item';
+ProductCard.displayName = 'Product Card';
 
-export default Item;
+export default ProductCard;

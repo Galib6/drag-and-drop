@@ -2,7 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 import { FC } from 'react';
-import Item, { ItemProps } from './Item';
+import ProductCard, { ItemProps } from './ProductCard';
 
 const SortableItem: FC<ItemProps> = (props) => {
   const { isDragging, attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.item.id });
@@ -12,7 +12,9 @@ const SortableItem: FC<ItemProps> = (props) => {
     transition: transition || undefined,
   };
 
-  return <Item ref={setNodeRef} style={style} withOpacity={isDragging} {...props} {...attributes} {...listeners} />;
+  return (
+    <ProductCard ref={setNodeRef} style={style} withOpacity={isDragging} {...props} {...attributes} {...listeners} />
+  );
 };
 
 export default SortableItem;
