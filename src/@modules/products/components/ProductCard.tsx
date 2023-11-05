@@ -23,18 +23,15 @@ const ProductCard = forwardRef<HTMLDivElement, ItemProps>(
       backgroundColor: 'white',
       overflow: 'hidden',
       backgroundPosition: 'center',
+      border: '1px solid gray',
       borderRadius: '10px',
-      boxShadow: withOpacity
-        ? 'rgb(63 63 68 / 5%) 0px 2px 0px 2px, rgb(34 33 81 / 15%) 0px 2px 3px 2px'
-        : 'rgb(63 63 68 / 5%) 0px 0px 0px 1px, rgb(34 33 81 / 15%) 0px 1px 3px 0px',
-      transform: withOpacity ? 'scale(1.05)' : 'scale(1)',
       ...style,
     };
 
     return (
-      <div className="product_item" ref={ref} style={inlineStyles} {...props}>
-        <div className={`overlay  ${!withOpacity && checkItems?.includes(item.id) ? 'block' : 'hidden '}`}>
-          <input checked={checkItems?.includes(item.id)} type="checkbox" />
+      <div className={`product_item ${!withOpacity ? 'dragging' : ''}`} ref={ref} style={inlineStyles} {...props}>
+        <div className={`overlay  ${checkItems?.includes(item.id) ? 'block ' : 'hidden '}`}>
+          <input onChange={() => {}} checked={checkItems?.includes(item.id)} type="checkbox" />
         </div>
         <img className="object-cover h-full w-full" src={item.img} alt="" />
       </div>

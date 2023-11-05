@@ -32,6 +32,10 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 
+    @include md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     @include lg {
       grid-template-columns: repeat(5, 1fr);
     }
@@ -56,22 +60,24 @@
     }
   }
 
-  &:hover {
-    .overlay {
-      // display: block;
-      z-index: 99;
-      &::before {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        content: '';
-        background-color: #ececec5b;
-      }
-      input {
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        cursor: pointer;
+  &.dragging {
+    &:hover {
+      .overlay {
+        display: block;
+        z-index: 99;
+        &::before {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          content: '';
+          background-color: #ececec5b;
+        }
+        input {
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          cursor: pointer;
+        }
       }
     }
   }
