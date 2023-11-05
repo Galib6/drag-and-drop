@@ -43,8 +43,4 @@ export const products = [
     id: 11,
     img: '/images/image-11.jpeg',
   },
-  {
-    id: 12,
-    img: '/images/image-1.webp',
-  },
 ];

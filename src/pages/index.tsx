@@ -12,7 +12,6 @@ import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortab
 import { products } from '@lib/const/products';
 import ProductCard from '@modules/products/components/ProductCard';
 import SortableItem from '@modules/products/components/SortableItem';
-import { Checkbox } from 'antd';
 import React, { useCallback, useState } from 'react';
 
 export interface IProduct {
@@ -24,7 +23,7 @@ const App: React.FC = () => {
   const [items, setItems] = useState(products);
   const [active, setActive] = useState<IProduct>(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
-  const [checkItems, setCheckedItems] = useState([1, 2]);
+  const [checkItems, setCheckedItems] = useState([]);
 
   const handleDragStart = useCallback((event: DragStartEvent) => {
     const active = items.find((item) => item.id === event.active.id);
@@ -50,6 +49,10 @@ const App: React.FC = () => {
     }
     setActive(null);
   }
+  const handleDeleteItem = () => {
+    const filteredItems = items.filter((item) => !checkItems.includes(item.id));
+    setItems([...filteredItems]);
+  };
 
   const handleDragCancel = useCallback(() => {
     setActive(null);
@@ -65,11 +68,13 @@ const App: React.FC = () => {
     >
       <SortableContext items={items} strategy={rectSortingStrategy}>
         <div className="container">
-          <h1>Gallery</h1>
-          <hr />
-          <Checkbox.Group className="card_container">
+          <div className="header">
+            <h1>Gallery</h1>
+            <button onClick={handleDeleteItem}>Delete files</button>
+          </div>
+          <div className="card_container">
             {items?.map((item, index) => <SortableItem checkItems={checkItems} key={item.id} i={index} item={item} />)}
-          </Checkbox.Group>
+          </div>
         </div>
       </SortableContext>
       <DragOverlay
