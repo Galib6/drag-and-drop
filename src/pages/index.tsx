@@ -71,12 +71,12 @@ const App: React.FC = () => {
         <div className="container">
           <div className="header">
             {checkItems.length > 0 ? (
-              <div className="flex justify-start gap-2 pl-5 py-5">
-                <input type="checkbox" defaultChecked />
+              <div className="flex justify-start gap-2 pl-5 py-[17px]">
+                <input onClick={() => setCheckedItems([])} type="checkbox" defaultChecked />
                 <p className="font-bold">{checkItems.length} File Selected</p>
               </div>
             ) : (
-              <h1>Gallery</h1>
+              <p className="py-[12px] title">Gallery</p>
             )}
             <button onClick={handleDeleteItem}>Delete files</button>
           </div>
