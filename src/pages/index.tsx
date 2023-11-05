@@ -31,7 +31,7 @@ const App: React.FC = () => {
   }, []);
 
   function handleDragEnd(event) {
-    const { active, over = null } = event;
+    const { active, over } = event;
 
     if (active.id !== over?.id) {
       console.log(active?.id, over?.id);
@@ -39,7 +39,7 @@ const App: React.FC = () => {
         const oldIndex = items.findIndex((item) => item.id === active?.id);
         const newIndex = items.findIndex((item) => item.id === over?.id);
 
-        return arrayMove(items, oldIndex, newIndex === undefined ? oldIndex : oldIndex);
+        return arrayMove(items, oldIndex, newIndex ?? oldIndex);
       });
     }
     if (checkItems.includes(active.id)) {
@@ -70,7 +70,14 @@ const App: React.FC = () => {
       <SortableContext items={items} strategy={rectSortingStrategy}>
         <div className="container">
           <div className="header">
-            <h1>Gallery</h1>
+            {checkItems.length > 0 ? (
+              <div className="flex justify-start gap-2 pl-5 py-5">
+                <input type="checkbox" defaultChecked />
+                <p className="font-bold">{checkItems.length} File Selected</p>
+              </div>
+            ) : (
+              <h1>Gallery</h1>
+            )}
             <button onClick={handleDeleteItem}>Delete files</button>
           </div>
           <div className="card_container">
