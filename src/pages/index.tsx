@@ -31,14 +31,15 @@ const App: React.FC = () => {
   }, []);
 
   function handleDragEnd(event) {
-    const { active, over } = event;
+    const { active, over = null } = event;
 
     if (active.id !== over?.id) {
+      console.log(active?.id, over?.id);
       setItems((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
+        const oldIndex = items.findIndex((item) => item.id === active?.id);
+        const newIndex = items.findIndex((item) => item.id === over?.id);
 
-        return arrayMove(items, oldIndex, newIndex);
+        return arrayMove(items, oldIndex, newIndex === undefined ? oldIndex : oldIndex);
       });
     }
     if (checkItems.includes(active.id)) {
